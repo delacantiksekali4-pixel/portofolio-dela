@@ -1,0 +1,2671 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dela Aulia — Portfolio</title>
+
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f7f0e8;
+            color: #243044;
+            line-height: 1.7;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* =========================
+           COLOR
+        ========================= */
+
+        :root {
+            --bg: #f7f0e8;
+            --card: #fffaf5;
+            --ink: #243044;
+            --muted: #6d7685;
+            --line: #e5d8ca;
+            --blue: #496783;
+            --gold: #c39a6b;
+            --rose: #d9b7af;
+            --soft: #f1e5d9;
+            --cream: #fbf6ef;
+
+            --serif: "DM Serif Display", Georgia, serif;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            width: min(1120px, calc(100% - 40px));
+            margin: auto;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            background: rgba(247, 240, 232, 0.92);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-inner {
+            height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--serif);
+            font-size: 25px;
+            color: var(--blue);
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .nav-links a {
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-links a::after {
+            content: "";
+
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+
+            width: 0;
+            height: 2px;
+
+            background: var(--gold);
+
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+
+            padding: 90px 0;
+
+            border-bottom: 1px solid var(--line);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f7f0e8 0%,
+                    #f1e6db 100%
+                );
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            background: rgba(217, 183, 175, 0.15);
+
+            right: -180px;
+            top: -170px;
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background: rgba(195, 154, 107, 0.08);
+
+            left: -150px;
+            bottom: -150px;
+        }
+
+        .hero-grid {
+            position: relative;
+
+            display: grid;
+
+            grid-template-columns: 1.1fr 0.9fr;
+
+            align-items: center;
+
+            gap: 70px;
+        }
+
+        .badge {
+            display: inline-flex;
+
+            padding: 8px 16px;
+
+            border-radius: 50px;
+
+            background: #f8e9e4;
+
+            color: #ad7770;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.08em;
+
+            text-transform: uppercase;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: var(--serif);
+
+            font-size: clamp(48px, 7vw, 82px);
+
+            line-height: 1.02;
+
+            font-weight: 400;
+
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: var(--blue);
+        }
+
+        .hero-desc {
+            max-width: 590px;
+
+            color: var(--muted);
+
+            margin: 24px 0 30px;
+
+            font-size: 16px;
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .buttons {
+            display: flex;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 22px;
+
+            border-radius: 50px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--blue);
+
+            color: white;
+
+            box-shadow:
+                0 8px 22px rgba(73, 103, 131, 0.22);
+        }
+
+        .btn-outline {
+            background: var(--card);
+
+            border: 1px solid var(--line);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 30px rgba(54, 43, 31, 0.12);
+        }
+
+        /* =========================
+           SOCIAL MEDIA HERO
+        ========================= */
+
+        .hero-social {
+            display: flex;
+
+            gap: 10px;
+
+            align-items: center;
+
+            margin-top: 25px;
+        }
+
+        .hero-social small {
+            color: var(--muted);
+
+            margin-right: 5px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+
+            border: 1px solid var(--line);
+
+            background: var(--card);
+
+            border-radius: 50%;
+
+            display: grid;
+
+            place-items: center;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: var(--blue);
+
+            transition: 0.3s;
+        }
+
+        .social-icon:hover {
+            background: var(--blue);
+
+            color: white;
+
+            transform: translateY(-4px);
+        }
+
+        /* =========================
+           HERO PHOTO
+        ========================= */
+
+        .photo-wrap {
+            width: min(360px, 80vw);
+
+            aspect-ratio: 1;
+
+            margin: auto;
+
+            position: relative;
+        }
+
+        .photo-wrap::before {
+            content: "";
+
+            position: absolute;
+
+            inset: -18px;
+
+            border: 1px solid var(--rose);
+
+            border-radius: 50%;
+
+            opacity: 0.6;
+        }
+
+        .photo-wrap::after {
+            content: "✦";
+
+            position: absolute;
+
+            right: -25px;
+            top: 35px;
+
+            color: var(--gold);
+
+            font-size: 30px;
+        }
+
+        .hero-photo {
+            width: 100%;
+            height: 100%;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+
+            border: 7px solid var(--card);
+
+            box-shadow:
+                0 20px 55px rgba(54, 43, 31, 0.12);
+
+            background: var(--card);
+        }
+
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        .section {
+            padding: 90px 0;
+
+            border-bottom: 1px solid var(--line);
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .label {
+            display: block;
+
+            color: var(--gold);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.14em;
+
+            text-transform: uppercase;
+
+            margin-bottom: 8px;
+        }
+
+        .title {
+            font-family: var(--serif);
+
+            font-size: 42px;
+
+            font-weight: 400;
+
+            line-height: 1.15;
+        }
+
+        .desc {
+            color: var(--muted);
+
+            max-width: 600px;
+
+            margin: 12px auto 45px;
+        }
+
+        /* =========================
+           SERVICES
+        ========================= */
+
+        .services {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+        .card {
+            background: var(--card);
+
+            border: 1px solid var(--line);
+
+            border-radius: 20px;
+
+            padding: 27px;
+
+            transition: 0.35s;
+
+            box-shadow:
+                0 5px 22px rgba(54, 43, 31, 0.035);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 18px 45px rgba(54, 43, 31, 0.10);
+
+            border-color: #d7c0a6;
+        }
+
+        .icon {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 14px;
+
+            background: var(--soft);
+
+            display: grid;
+
+            place-items: center;
+
+            color: var(--blue);
+
+            font-size: 20px;
+
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            font-family: var(--serif);
+
+            font-size: 21px;
+
+            font-weight: 400;
+
+            margin-bottom: 7px;
+        }
+
+        .card p {
+            font-size: 13px;
+
+            color: var(--muted);
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            display: grid;
+
+            grid-template-columns:
+                0.8fr 1.2fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .about-photo {
+            position: relative;
+
+            max-width: 360px;
+        }
+
+        .about-photo::after {
+            content: "";
+
+            position: absolute;
+
+            left: 22px;
+            top: 22px;
+            right: -18px;
+            bottom: -18px;
+
+            border: 2px solid var(--rose);
+
+            border-radius: 20px;
+
+            z-index: -1;
+        }
+
+        .about-photo img {
+            width: 100%;
+
+            aspect-ratio: 4 / 5;
+
+            object-fit: cover;
+
+            border-radius: 20px;
+
+            border: 1px solid var(--line);
+
+            box-shadow:
+                0 15px 40px rgba(54, 43, 31, 0.08);
+        }
+
+        .about p {
+            color: var(--muted);
+
+            margin: 18px 0;
+        }
+
+        .quote {
+            border-left: 3px solid var(--gold);
+
+            padding-left: 20px;
+
+            color: var(--blue) !important;
+
+            font-family: var(--serif);
+
+            font-size: 21px;
+
+            font-style: italic;
+        }
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 9px;
+
+            margin-top: 22px;
+        }
+
+        .skill {
+            padding: 8px 13px;
+
+            border-radius: 50px;
+
+            background: var(--card);
+
+            border: 1px solid var(--line);
+
+            font-size: 12px;
+
+            color: var(--muted);
+
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            background: var(--blue);
+
+            color: white;
+
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           CV SECTION
+        ========================= */
+
+        .cv-box {
+            max-width: 650px;
+
+            margin: auto;
+
+            padding: 40px;
+
+            background: var(--card);
+
+            border: 1px solid var(--line);
+
+            border-radius: 24px;
+
+            text-align: center;
+
+            box-shadow:
+                0 8px 30px rgba(54, 43, 31, 0.05);
+        }
+
+        .cv-icon {
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 18px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 18px;
+
+            background: var(--soft);
+
+            color: var(--blue);
+
+            font-size: 28px;
+        }
+
+        .cv-box h3 {
+            font-family: var(--serif);
+
+            font-size: 28px;
+
+            font-weight: 400;
+
+            margin-bottom: 8px;
+        }
+
+        .cv-box p {
+            color: var(--muted);
+
+            font-size: 14px;
+
+            margin-bottom: 22px;
+        }
+
+        .cv-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            padding: 13px 23px;
+
+            border: none;
+
+            border-radius: 50px;
+
+            background: var(--blue);
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 8px 22px rgba(73, 103, 131, 0.20);
+        }
+
+        .cv-button:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 30px rgba(54, 43, 31, 0.12);
+        }
+
+        /* =========================
+           CV MODAL
+        ========================= */
+
+        .cv-modal {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 1000;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            background: rgba(36, 48, 68, 0.70);
+
+            backdrop-filter: blur(8px);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition: 0.3s;
+        }
+
+        .cv-modal.active {
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+        .cv-modal-content {
+            position: relative;
+
+            width: min(750px, 100%);
+
+            max-height: 92vh;
+
+            overflow-y: auto;
+
+            padding: 12px;
+
+            background: white;
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 30px 80px rgba(36, 48, 68, 0.30);
+
+            transform: translateY(25px) scale(0.97);
+
+            transition: 0.3s;
+        }
+
+        .cv-modal.active .cv-modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .cv-modal-content img {
+            width: 100%;
+
+            height: auto;
+
+            border-radius: 14px;
+        }
+
+        .cv-close {
+            position: absolute;
+
+            right: 20px;
+            top: 20px;
+
+            width: 42px;
+            height: 42px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: rgba(36, 48, 68, 0.80);
+
+            color: white;
+
+            font-size: 23px;
+
+            cursor: pointer;
+
+            display: grid;
+
+            place-items: center;
+
+            z-index: 5;
+
+            transition: 0.3s;
+        }
+
+        .cv-close:hover {
+            background: var(--blue);
+
+            transform: rotate(90deg);
+        }
+
+        /* =========================
+           PORTFOLIO
+        ========================= */
+
+        .portfolio {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .project {
+            overflow: hidden;
+
+            background: var(--card);
+
+            border: 1px solid var(--line);
+
+            border-radius: 20px;
+
+            transition: 0.35s;
+
+            cursor: pointer;
+        }
+
+        .project:hover {
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 18px 45px rgba(54, 43, 31, 0.10);
+        }
+
+        /* GAMBAR PROJECT */
+
+        .project-cover {
+            height: 210px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eee1d4,
+                    #f8eee6
+                );
+        }
+
+        .project-cover img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: 0.4s;
+        }
+
+        .project:hover .project-cover img {
+            transform: scale(1.05);
+        }
+
+        .project-cover::after {
+            content: "Lihat Detail →";
+
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%) scale(0.9);
+
+            background: rgba(36, 48, 68, 0.88);
+
+            color: white;
+
+            padding: 10px 18px;
+
+            border-radius: 50px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            opacity: 0;
+
+            transition: 0.3s;
+
+            white-space: nowrap;
+        }
+
+        .project:hover .project-cover::after {
+            opacity: 1;
+
+            transform:
+                translate(-50%, -50%)
+                scale(1);
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .tag {
+            font-size: 10px;
+
+            color: var(--gold);
+
+            font-weight: 700;
+
+            letter-spacing: 0.1em;
+
+            text-transform: uppercase;
+        }
+
+        .project h3 {
+            font-family: var(--serif);
+
+            font-size: 20px;
+
+            font-weight: 400;
+
+            margin: 5px 0;
+        }
+
+        .project p {
+            font-size: 13px;
+
+            color: var(--muted);
+        }
+
+        .project-detail-button {
+            margin-top: 14px;
+
+            border: none;
+
+            background: transparent;
+
+            color: var(--blue);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            padding: 0;
+        }
+
+        .project-detail-button:hover {
+            color: var(--gold);
+        }
+
+        /* =========================
+           MODAL / POP-UP PROJECT
+        ========================= */
+
+        .modal {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 999;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 25px;
+
+            background: rgba(36, 48, 68, 0.55);
+
+            backdrop-filter: blur(8px);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition: 0.3s;
+        }
+
+        .modal.active {
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+        .modal-content {
+            position: relative;
+
+            width: min(760px, 100%);
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background: var(--card);
+
+            border: 1px solid var(--line);
+
+            border-radius: 26px;
+
+            box-shadow:
+                0 30px 80px rgba(36, 48, 68, 0.25);
+
+            transform: translateY(25px) scale(0.97);
+
+            transition: 0.3s;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-image {
+            width: 100%;
+
+            height: 300px;
+
+            overflow: hidden;
+
+            border-radius:
+                26px 26px 0 0;
+
+            background: var(--soft);
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .modal-body {
+            padding: 32px;
+        }
+
+        .modal-tag {
+            display: inline-block;
+
+            color: var(--gold);
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.12em;
+
+            text-transform: uppercase;
+
+            margin-bottom: 5px;
+        }
+
+        .modal-body h2 {
+            font-family: var(--serif);
+
+            font-size: 34px;
+
+            font-weight: 400;
+
+            color: var(--ink);
+
+            margin-bottom: 12px;
+        }
+
+        .modal-body p {
+            color: var(--muted);
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+        }
+
+        .modal-tech {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            margin-top: 15px;
+        }
+
+        .modal-tech span {
+            padding: 7px 12px;
+
+            border-radius: 50px;
+
+            background: var(--soft);
+
+            color: var(--blue);
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+        .modal-close {
+            position: absolute;
+
+            right: 18px;
+            top: 18px;
+
+            width: 42px;
+            height: 42px;
+
+            border: 1px solid rgba(255,255,255,0.7);
+
+            border-radius: 50%;
+
+            background: rgba(36, 48, 68, 0.75);
+
+            color: white;
+
+            font-size: 22px;
+
+            cursor: pointer;
+
+            display: grid;
+
+            place-items: center;
+
+            z-index: 5;
+
+            transition: 0.3s;
+        }
+
+        .modal-close:hover {
+            background: var(--blue);
+
+            transform: rotate(90deg);
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact-box {
+            background: var(--blue);
+
+            color: white;
+
+            border-radius: 26px;
+
+            padding: 55px;
+
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .contact-box::before {
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,0.13);
+
+            right: -90px;
+            top: -130px;
+        }
+
+        .contact-box .label {
+            color: #e8cda9;
+        }
+
+        .contact-box h2 {
+            font-family: var(--serif);
+
+            font-size: 44px;
+
+            font-weight: 400;
+        }
+
+        .contact-box p {
+            max-width: 570px;
+
+            margin: 10px auto 25px;
+
+            color: #e1e7ed;
+        }
+
+        .contact-actions {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+        .contact-actions .btn-primary {
+            background: white;
+
+            color: var(--blue);
+        }
+
+        .contact-actions .btn-outline {
+            background: transparent;
+
+            color: white;
+
+            border-color:
+                rgba(255,255,255,0.4);
+        }
+
+        /* =========================
+           SOCIAL MEDIA SECTION
+        ========================= */
+
+        .social-section {
+            margin-top: 28px;
+
+            padding: 30px;
+
+            background: var(--card);
+
+            border: 1px solid var(--line);
+
+            border-radius: 22px;
+
+            text-align: center;
+        }
+
+        .social-section h3 {
+            font-family: var(--serif);
+
+            font-size: 25px;
+
+            font-weight: 400;
+        }
+
+        .social-section p {
+            color: var(--muted);
+
+            font-size: 13px;
+
+            margin-top: 3px;
+        }
+
+        .social-links {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            margin-top: 18px;
+        }
+
+        .social-link {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 10px 17px;
+
+            border-radius: 50px;
+
+            background: var(--bg);
+
+            border: 1px solid var(--line);
+
+            font-size: 13px;
+
+            color: var(--blue);
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--blue);
+
+            color: white;
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 20px rgba(73,103,131,.18);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 35px 0;
+
+            background: #eee5db;
+
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+        .footer-inner {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .footer-name {
+            font-family: var(--serif);
+
+            font-size: 20px;
+
+            color: var(--blue);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+
+                gap: 50px;
+
+                text-align: center;
+            }
+
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons,
+            .hero-social {
+                justify-content: center;
+            }
+
+            .services {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+            .portfolio {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+            .about {
+                grid-template-columns:
+                    1fr;
+
+                gap: 50px;
+            }
+
+            .about-photo {
+                margin: auto;
+            }
+
+            .about > div:last-child {
+                text-align: center;
+            }
+
+            .skills {
+                justify-content: center;
+            }
+
+            .quote {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 640px) {
+
+            .container {
+                width: min(
+                    100% - 30px,
+                    1120px
+                );
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 65px 0;
+            }
+
+            .hero h1 {
+                font-size: 50px;
+            }
+
+            .section {
+                padding: 65px 0;
+            }
+
+            .title {
+                font-size: 35px;
+            }
+
+            .services,
+            .portfolio {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-box {
+                padding: 38px 22px;
+            }
+
+            .contact-box h2 {
+                font-size: 35px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+
+                text-align: center;
+
+                align-items: center;
+            }
+
+            .modal {
+                padding: 15px;
+            }
+
+            .modal-image {
+                height: 210px;
+            }
+
+            .modal-body {
+                padding: 25px 20px;
+            }
+
+            .modal-body h2 {
+                font-size: 29px;
+            }
+
+            .cv-modal {
+                padding: 12px;
+            }
+
+            .cv-modal-content {
+                padding: 7px;
+                border-radius: 16px;
+            }
+
+            .cv-close {
+                width: 38px;
+                height: 38px;
+
+                right: 14px;
+                top: 14px;
+            }
+
+            .cv-box {
+                padding: 30px 20px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<header class="nav">
+
+    <div class="container nav-inner">
+
+        <a href="#home" class="logo">
+            Dela<span>Aulia</span>
+        </a>
+
+        <nav class="nav-links">
+
+            <a href="#services">
+                Layanan
+            </a>
+
+            <a href="#about">
+                Tentang
+            </a>
+
+            <a href="#cv">
+                CV
+            </a>
+
+            <a href="#portfolio">
+                Portofolio
+            </a>
+
+            <a href="#contact">
+                Kontak
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main id="home">
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="container hero-grid">
+
+        <div>
+
+            <div class="badge">
+                ✦ Hi, Aku Dela
+            </div>
+
+
+            <h1>
+                Designer &<br>
+                <span>Web Developer</span>
+            </h1>
+
+
+            <p class="hero-desc">
+
+                Berfokus pada pengembangan website
+                dan senang mengeksplorasi berbagai
+                teknologi.
+            </p>
+
+
+            <div class="buttons">
+
+                <a
+                    href="#contact"
+                    class="btn btn-primary"
+                >
+                    Jelajahi Profil →
+                </a>
+
+
+                <a
+                    href="#portfolio"
+                    class="btn btn-outline"
+                >
+                    Lihat Portofolio
+                </a>
+
+            </div>
+
+
+            <!-- SOCIAL MEDIA HERO -->
+
+            <div class="hero-social">
+
+                <small>
+                    Temui saya:
+                </small>
+
+
+                <a
+                    href="https://instagram.com/dlaasdn"
+                    target="_blank"
+                    class="social-icon"
+                    title="Instagram"
+                >
+                    IG
+                </a>
+
+
+                <a
+                    href="https://www.tiktok.com/de"
+                    target="_blank"
+                    class="social-icon"
+                    title="TikTok"
+                >
+                    TK
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOTO -->
+
+        <div class="photo-wrap">
+
+            <div class="hero-photo">
+
+                <img
+                    src="delaprincess.jpeg"
+                    alt="Foto Dela Aulia"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     KEAHLIAN YANG SAYA PELAJARI
+========================= -->
+
+<section
+    class="section"
+    id="services"
+>
+
+    <div class="container">
+
+        <div class="center">
+
+            <span class="label">
+                ✦ Keahlian
+            </span>
+
+            <h2 class="title">
+                Keahlian yang Saya Pelajari
+            </h2>
+
+            <p class="desc">
+                Beberapa keahlian yang sedang saya pelajari
+                dan kembangkan selama belajar di jurusan RPL.
+            </p>
+
+        </div>
+
+        <div class="services">
+
+            <div class="card">
+
+                <div class="icon">
+                    ◫
+                </div>
+
+                <h3>
+                    HTML & CSS
+                </h3>
+
+                <p>
+                    Mempelajari dasar pembuatan dan pengaturan
+                    tampilan website menggunakan HTML dan CSS.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">
+                    ⌘
+                </div>
+
+                <h3>
+                    PHP & MySQL
+                </h3>
+
+                <p>
+                    Mempelajari pembuatan website dinamis serta
+                    pengelolaan database menggunakan PHP dan MySQL.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">
+                    ▣
+                </div>
+
+                <h3>
+                    UI/UX Design
+                </h3>
+
+                <p>
+                    Mempelajari cara membuat desain antarmuka
+                    yang rapi, menarik, dan mudah digunakan.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">
+                    ✦
+                </div>
+
+                <h3>
+                    Figma
+                </h3>
+
+                <p>
+                    Mempelajari pembuatan desain website, aplikasi,
+                    prototype, dan berbagai kebutuhan visual menggunakan Figma.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section
+    class="section"
+    id="about"
+>
+
+    <div class="container about">
+
+
+        <div class="about-photo">
+
+            <img
+                src="delacantik.jpeg"
+                alt="Dela Aulia"
+            >
+
+        </div>
+
+
+        <div>
+
+            <span class="label">
+                ✦ Tentang Saya
+            </span>
+
+
+            <h2 class="title">
+                Desainer dengan<br>
+                Jiwa Kreatif
+            </h2>
+
+
+            <p>
+
+                Saya Dela Aulia Sintya Dini,
+                siswi jurusan Rekayasa Perangkat Lunak
+                yang tertarik dengan UI/UX, desain website,
+                dan pengembangan aplikasi.
+
+            </p>
+
+
+            <p>
+
+                Saya senang menggabungkan sisi kreatif
+                dengan teknologi untuk membuat karya digital
+                yang tidak hanya terlihat bagus,
+                tetapi juga mudah digunakan.
+
+            </p>
+
+
+            <p class="quote">
+
+                “Belajar sedikit demi sedikit,
+                membuat sesuatu yang berarti.”
+
+            </p>
+
+
+            <!-- SKILLS -->
+
+            <div class="skills">
+
+                <span class="skill">
+                    Figma
+                </span>
+
+                <span class="skill">
+                    HTML
+                </span>
+
+                <span class="skill">
+                    CSS
+                </span>
+
+                <span class="skill">
+                    PHP
+                </span>
+
+                <span class="skill">
+                    Laravel
+                </span>
+
+                <span class="skill">
+                    MySQL
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CV
+========================= -->
+
+<section
+    class="section"
+    id="cv"
+>
+
+    <div class="container">
+
+        <div class="center">
+
+            <span class="label">
+                ✦ Curriculum Vitae
+            </span>
+
+            <h2 class="title">
+                CV Saya
+            </h2>
+
+            <p class="desc">
+                Lihat curriculum vitae saya untuk mengetahui
+                lebih lanjut tentang diri saya dan pengalaman saya.
+            </p>
+
+        </div>
+
+
+        <div class="cv-box">
+
+            <div class="cv-icon">
+                📄
+            </div>
+
+            <h3>
+                Curriculum Vitae
+            </h3>
+
+            <p>
+                Klik tombol di bawah untuk melihat CV saya.
+            </p>
+
+            <button
+                class="cv-button"
+                onclick="openCV()"
+            >
+                📄 Lihat CV Saya →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     POP-UP CV
+========================= -->
+
+<div
+    class="cv-modal"
+    id="cvModal"
+    onclick="closeCVOutside(event)"
+>
+
+    <div class="cv-modal-content">
+
+        <button
+            class="cv-close"
+            onclick="closeCV()"
+            aria-label="Tutup CV"
+        >
+            ×
+        </button>
+
+        <img
+            src="cv.jpeg"
+            alt="Curriculum Vitae Dela Aulia"
+        >
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     PORTFOLIO
+========================= -->
+
+<section
+    class="section"
+    id="portfolio"
+>
+
+    <div class="container">
+
+
+        <div class="center">
+
+            <span class="label">
+                ✦ Portofolio
+            </span>
+
+            <h2 class="title">
+                Beberapa Karya Saya
+            </h2>
+
+            <p class="desc">
+
+                Beberapa project yang pernah saya
+                kerjakan selama belajar desain dan pemrograman.
+
+            </p>
+
+        </div>
+
+
+        <div class="portfolio">
+
+
+            <!-- PROJECT 1 -->
+
+            <article
+                class="project"
+                onclick="openModal('modalFlorist')"
+            >
+
+                <div class="project-cover">
+
+                    <img
+                        src="florist.jpg"
+                        alt="Project Florist Cashier"
+                    >
+
+                </div>
+
+                <div class="project-info">
+
+                    <span class="tag">
+                        Web Development
+                    </span>
+
+                    <h3>
+                        Florist Cashier
+                    </h3>
+
+                    <p>
+                        Aplikasi kasir berbasis web untuk
+                        mengelola produk, transaksi,
+                        dan riwayat penjualan.
+                    </p>
+
+                    <button
+                        class="project-detail-button"
+                        onclick="event.stopPropagation(); openModal('modalFlorist')"
+                    >
+                        Lihat Detail →
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- PROJECT 2 -->
+
+            <article
+                class="project"
+                onclick="openModal('modalTask')"
+            >
+
+                <div class="project-cover">
+
+                    <img
+                        src="nunnacosmetik.jpeg"
+                        alt="project Kasir Nunna Cosmetic"
+                    >
+
+                </div>
+
+                <div class="project-info">
+
+                    <span class="tag">
+                        Web Development
+                    </span>
+
+                    <h3>
+                        Kasir Nunna Cosmetic 
+                    </h3>
+
+                    <p>
+                        Konsep aplikasi untuk membantu
+                        Mengubah proses pencatatan toko Nunna Cosmetic
+                        Yang masi manual menjadi sistem digital.
+                    </p>
+
+                    <button
+                        class="project-detail-button"
+                        onclick="event.stopPropagation(); openModal('modalTask')"
+                    >
+                        Lihat Detail →
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- PROJECT 3 -->
+
+            <article
+                class="project"
+                onclick="openModal('modalCashier')"
+            >
+
+                <div class="project-cover">
+
+                    <img
+                        src="aplikasimobile.jpeg"
+                        alt="Project Online Cashier"
+                    >
+
+                </div>
+
+                <div class="project-info">
+
+                    <span class="tag">
+                        Pemograman Dart
+                    </span>
+
+                    <h3>
+                        Kasirku
+                    </h3>
+
+                    <p>
+                        Konsep Aplikasib sistem kasir dengan
+                        data barang, laporan penjualan, sistem kasir,
+                        Data user/admin, riwayat transaksi dan pengaturan.
+                    </p>
+
+                    <button
+                        class="project-detail-button"
+                        onclick="event.stopPropagation(); openModal('modalCashier')"
+                    >
+                        Lihat Detail →
+                    </button>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MODAL PROJECT 1
+========================= -->
+
+<div
+    class="modal"
+    id="modalFlorist"
+    onclick="closeModalOutside(event, 'modalFlorist')"
+>
+
+    <div class="modal-content">
+
+        <button
+            class="modal-close"
+            onclick="closeModal('modalFlorist')"
+            aria-label="Tutup"
+        >
+            ×
+        </button>
+
+
+        <div class="modal-image">
+
+            <img
+                src="florist.jpg"
+                alt="Florist Cashier"
+            >
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <span class="modal-tag">
+                Web Development
+            </span>
+
+            <h2>
+                Florist Cashier
+            </h2>
+
+            <p>
+
+                Florist Cashier adalah aplikasi kasir berbasis
+                web yang dibuat untuk membantu proses pengelolaan
+                toko bunga. Sistem ini mencakup pengelolaan data
+                bunga, transaksi penjualan, serta riwayat transaksi.
+
+            </p>
+
+            <p>
+
+                Project ini dibuat sebagai latihan dalam memahami
+                pembuatan aplikasi web, pengelolaan database,
+                dan proses transaksi pada sistem kasir.
+
+            </p>
+
+            <div class="modal-tech">
+
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>PHP</span>
+                <span>MySQL</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MODAL PROJECT 2
+========================= -->
+
+<div
+    class="modal"
+    id="modalTask"
+    onclick="closeModalOutside(event, 'modalTask')"
+>
+
+    <div class="modal-content">
+
+        <button
+            class="modal-close"
+            onclick="closeModal('modalTask')"
+            aria-label="Tutup"
+        >
+            ×
+        </button>
+
+
+        <div class="modal-image">
+
+            <img
+                src="nunnacosmetik.jpeg"
+                alt="Kasir Nunna Cosmetic"
+            >
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <span class="modal-tag">
+                Web Development
+            </span>
+
+            <h2>
+                Kasir Nunna Cosmetic
+            </h2>
+
+            <p>
+
+                Kasir Toko Nunna Cosmetic merupakan
+                sistem kasir berbasis web, yang dibuat 
+                untuk membantu proses pengelolaan toko kosmetik 
+                secara digital
+            </p>
+
+            <p>
+
+                Konsep ini berfokus untuk mengelola Produ,
+                Stok,Transaksi,dan Laporan Penjualan Toko Nunna Cosmetic 
+                agar lebih praktis dan terorganissir.
+            </p>
+
+            <div class="modal-tech">
+
+                <span>Mysql</span>
+                <span>PHP</span>
+                <span>HTML</span>
+                <span>CSS</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MODAL PROJECT 3
+========================= -->
+
+<div
+    class="modal"
+    id="modalCashier"
+    onclick="closeModalOutside(event, 'modalCashier')"
+>
+
+    <div class="modal-content">
+
+        <button
+            class="modal-close"
+            onclick="closeModal('modalCashier')"
+            aria-label="Tutup"
+        >
+            ×
+        </button>
+
+
+        <div class="modal-image">
+
+            <img
+                src="beranda.jpeg"
+                alt="Online Cashier"
+            >
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <span class="modal-tag">
+                Pemograman Dart
+            </span>
+
+            <h2>
+                Kasirku
+            </h2>
+
+            <p>
+
+                Online Cashier merupakan konsep aplikasi kasir
+                berbasis web yang dibuat untuk mengelola produk,
+                kategori, keranjang belanja, dan transaksi.
+
+            </p>
+
+            <p>
+
+                Project ini digunakan untuk mempelajari framework
+                Laravel serta penerapan database dalam pembuatan
+                sistem kasir berbasis web.
+
+            </p>
+
+            <div class="modal-tech">
+
+                <span>Dart</span>
+                <span>Android Studio</span>
+                <span>MySQL</span>
+                <span>HTML</span>
+                <span>CSS</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section
+    class="section"
+    id="contact"
+>
+
+    <div class="container">
+
+
+        <div class="contact-box">
+
+
+            <span class="label">
+                ✦ Let's Connect
+            </span>
+
+
+            <h2>
+                Yuk, ngobrol & mari bekerjasama!
+            </h2>
+
+
+            <p>
+
+                Punya ide project atau sekadar ingin
+                terhubung? Kamu bisa menghubungi saya
+                melalui kontak di bawah ini.
+
+            </p>
+
+
+            <div class="contact-actions">
+
+
+                <!-- EMAIL -->
+
+                <a
+                    href="mailto:delaauliasintyadini@gmail.com"
+                    class="btn btn-primary"
+                >
+                    ✉ Email Saya
+                </a>
+
+
+                <!-- WHATSAPP -->
+
+                <a
+                    href="https://wa.me/6281217414226"
+                    target="_blank"
+                    class="btn btn-outline"
+                >
+                    WhatsApp →
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- SOCIAL MEDIA -->
+
+        <div class="social-section">
+
+
+            <h3>
+                Temukan Saya di Sosial Media
+            </h3>
+
+
+            <p>
+                Klik salah satu akun untuk berkunjung.
+            </p>
+
+
+            <div class="social-links">
+
+
+                <!-- INSTAGRAM -->
+
+                <a
+                    href="https://instagram.com/dlaasdn"
+                    target="_blank"
+                    class="social-link"
+                >
+                    ◎ Instagram
+                </a>
+
+
+                <!-- TIKTOK -->
+
+                <a
+                    href="https://www.tiktok.com/delakerennn"
+                    target="_blank"
+                    class="social-link"
+                >
+                    ♪ TikTok
+                </a>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="container footer-inner">
+
+
+        <div>
+
+            <div class="footer-name">
+                Dela Aulia
+            </div>
+
+            <div>
+                cantik manis lucu lucu • portofolio
+            </div>
+
+        </div>
+
+
+        <div>
+            © 2026 made in delaa.
+        </div>
+
+
+    </div>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+    /* =========================
+       MODAL PROJECT
+    ========================= */
+
+    function openModal(modalId) {
+
+        const modal = document.getElementById(modalId);
+
+        if (modal) {
+
+            modal.classList.add("active");
+
+            document.body.classList.add("modal-open");
+
+        }
+
+    }
+
+
+    function closeModal(modalId) {
+
+        const modal = document.getElementById(modalId);
+
+        if (modal) {
+
+            modal.classList.remove("active");
+
+            document.body.classList.remove("modal-open");
+
+        }
+
+    }
+
+
+    function closeModalOutside(event, modalId) {
+
+        if (event.target.id === modalId) {
+
+            closeModal(modalId);
+
+        }
+
+    }
+
+
+    /* =========================
+       MODAL CV
+    ========================= */
+
+    function openCV() {
+
+        const cvModal = document.getElementById("cvModal");
+
+        if (cvModal) {
+
+            cvModal.classList.add("active");
+
+            document.body.classList.add("modal-open");
+
+        }
+
+    }
+
+
+    function closeCV() {
+
+        const cvModal = document.getElementById("cvModal");
+
+        if (cvModal) {
+
+            cvModal.classList.remove("active");
+
+            document.body.classList.remove("modal-open");
+
+        }
+
+    }
+
+
+    function closeCVOutside(event) {
+
+        if (event.target.id === "cvModal") {
+
+            closeCV();
+
+        }
+
+    }
+
+
+    /* =========================
+       ESCAPE KEY
+    ========================= */
+
+    document.addEventListener("keydown", function(event) {
+
+        if (event.key === "Escape") {
+
+            const modals =
+                document.querySelectorAll(".modal.active");
+
+            modals.forEach(function(modal) {
+
+                modal.classList.remove("active");
+
+            });
+
+
+            const cvModal =
+                document.getElementById("cvModal");
+
+            if (cvModal) {
+
+                cvModal.classList.remove("active");
+
+            }
+
+
+            document.body.classList.remove("modal-open");
+
+        }
+
+    });
+
+</script>
+
+
+</body>
+</html>
